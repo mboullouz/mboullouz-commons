@@ -4,7 +4,7 @@ node_modules
 /coverage
 /dist
 /typings
-
+package-lock.json
 # Editor configuration
 .vscode
 .settings
