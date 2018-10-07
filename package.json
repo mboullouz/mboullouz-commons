@@ -1,6 +1,6 @@
 {
     "name": "mboullouz-commons",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "description": "Reusable library written in TypeScript.",
     "main": "./dist/lib/umd.js",
     "browser": "./dist/lib/index.js",
