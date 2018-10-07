@@ -1,45 +1,21 @@
-import { SfConfig } from "./SfConfig";
+import {JSRoutingParams, SfConfig} from "./SfConfig";
 
-export class HttpService {
-  static post<T>(
-    dataToSubmit: T,
-    callbackSuccess: (response: any) => any,
-    callbackError: (response: any) => any,
-    routeName: string,
-    routeParams?: any,
-    routeFlag?: boolean
-  ) {
-    $.ajax(
-      HttpService.constructPostObject(
-        dataToSubmit,
-        callbackSuccess,
-        callbackError,
-        routeName,
-        routeParams,
-        routeFlag
-      )
-    );
-  }
+export class Http {
+    static async post<T>(dataToSubmit: T, routingParams: JSRoutingParams) {
+        return $.ajax(Http.constructRequest(dataToSubmit, routingParams, "POST"));
+    }
 
-  private static constructPostObject(
-    dataToSubmit: any,
-    callbackSuccess: (response: any) => any,
-    callbackError: (response: any) => any,
-    routeName: string,
-    routeParams?: any,
-    routeFlag?: boolean
-  ): any {
-    const obj = {
-      url: SfConfig.getRouter().generate(routeName, routeParams, routeFlag),
-      type: "POST",
-      data: JSON.stringify(dataToSubmit),
-      success: function(serverResp: any) {
-        callbackSuccess(serverResp);
-      },
-      error: function(serverResp: any) {
-        callbackError(serverResp);
-      }
-    };
-    return obj;
-  }
+    static async get(routingParams: JSRoutingParams){
+        return $.ajax(Http.constructRequest({}, routingParams, "GET") );
+    }
+
+    private static constructRequest(dataToSubmit: any, routingParams: JSRoutingParams, methodType: string): any {
+        return {
+            url: SfConfig.getRouter().generate(routingParams.nomRoute, routingParams.params, routingParams.flag),
+            method: methodType,
+            data: JSON.stringify(dataToSubmit),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json"
+        };
+    }
 }

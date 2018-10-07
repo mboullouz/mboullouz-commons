@@ -2,6 +2,12 @@ import IObject from "./IObject";
 
 
 export default class LinkedList<T extends IObject> {
+  arr: Array<T> = [];
+
+  constructor() {
+    this.arr = [];
+  }
+
   size(): number {
     return this.arr.length;
   }
@@ -14,10 +20,7 @@ export default class LinkedList<T extends IObject> {
   first(): T {
     return this.arr[0];
   }
-  arr: Array<T> = [];
-  constructor() {
-    this.arr = [];
-  }
+
   public add(t: T) {
     this.arr.push(t);
     return this;
