@@ -1,6 +1,7 @@
 import * as moment from 'moment';
 
 /**
+ * 
  * This a small "port" to Typescript
  * all credit to original author(s) 
  * @at: https://github.com/vitalets/combodate
