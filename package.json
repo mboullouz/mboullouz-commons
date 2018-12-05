@@ -13,6 +13,7 @@
         "umd": "node browserify-umd.js",
         "minify": "node minify-umd.js",
         "build": "npm run clean && npm run lint && npm run tsc && npm run umd && npm run minify",
+        "include": "npm run clean && npm run tsc && npm run umd && npm run minify",
         "test": "mocha ./dist/test/*Test.js",
         "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- ./dist/test/*.js",
         "publish_to_npm": "npm publish",
